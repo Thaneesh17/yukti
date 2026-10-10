@@ -119,6 +119,7 @@ const E=[
 {s:'mystery-person',n:'Mystery Person',t:'N',tg:['Yes or No?','Guess who!'],d:'Guess the mystery person from yes or no questions, and win exciting prizes.',v:'D-Block',tm:'10:00 AM',f:[['Per team',60]],c:[['S. Abhinaya','7794945299'],['Y. Samhith','7032954799']]},
 {s:'whisper-challenge',n:'Whisper Challenge',t:'N',tg:['Hear it','Guess it','Fun it'],d:'Same words, different stories. Hear it, guess it, have fun with it.',v:'D-306',tm:'10:00 AM onwards',f:[['Duo',50],['Trio',80]],c:[['Sharon','8374586096'],['Meesha','9908077648']]}
 ];
+const U={'poster-presentation':'https://docs.google.com/forms/d/e/1FAIpQLSfjv_5bWiX5LIOd_aOFu5cAoa76352P9lXgsS5_u5GFdZs7kQ/viewform','paper-presentation':'https://docs.google.com/forms/d/e/1FAIpQLSeyBc1m88TiaEx12HTJPBZi6K6SSPeZoHS1vEWe-UiHLRLyHQ/viewform?usp=dialog','code-rush':'https://docs.google.com/forms/d/e/1FAIpQLSfA09abViro5WshOH3nOS8h6Q5_MhmfKbg86Pt0k9Rc8I1lPw/viewform','debug-the-code':'https://docs.google.com/forms/d/e/1FAIpQLScsIUOLVeyOuuH_rSucDxMq30pm8wKPm_xLnkUn_LCVQntBVw/viewform','project-expo':'https://docs.google.com/forms/d/e/1FAIpQLSeSq4sBU2iSzEjttBPcey4cjB5154Oh-D3ehDyy0VqKGlJefg/viewform','reverse-engineering':'https://docs.google.com/forms/d/e/1FAIpQLSeXdLWoCmRolnTfkuQCuSd-X3EN3WpSCKCxSju5ptK9zxu-rw/viewform','ipl-auction':'https://docs.google.com/forms/d/e/1FAIpQLScFLP79Ffz91sL8T0aJMm4lrx4ESG2fDHIjb3N0pSoVOxRlrg/viewform','tug-of-war':'https://docs.google.com/forms/d/e/1FAIpQLSfYw_7_egRt_aXbaqoJyAGAQUEPAm62h1B3QtFXRi5r5LnyPA/viewform','whisper-challenge':'https://docs.google.com/forms/d/e/1FAIpQLSf8RB37vtn-VLudv7NLSprDDnmqF0Ex9Ksw4JhPaZKavn3t7A/viewform','mystery-person':'https://docs.google.com/forms/d/e/1FAIpQLSdMlhOd8bKmRQav9Nd52VvdDCl6QcCrXVvpsvZKTdm1T-eWkQ/viewform'};
 const P=[['Convener','Dr. D. Vijaya Lakshmi','Professor &amp; HoD, Department of IT'],
 ['Faculty Coordinator','Dr. Chinnakka Sudha','Assistant Professor, IT','9666468910'],['Faculty Coordinator','Ms. A. Amulya','Assistant Professor, IT','9618021498'],
 ['Student Convener','CH. Yashwanth Sai','','9618923912'],['Student Convener','G. Akanksha','','8712620089'],
@@ -165,11 +166,11 @@ app.innerHTML=`<div class="ev"><div class="w"><div class="eh"><a class="bk" href
 <h1><span>${e.n}</span></h1><p class="d">${e.d}</p>
 <div class="chips">${e.tg.map(t=>`<span>${t}</span>`).join('')}</div>${e.p?`<div class="perk">★ ${e.p}</div>`:''}${e.x?`<p style="color:var(--mut);max-width:640px">${e.x}</p>`:''}
 <div class="meta" style="margin-top:26px"><div><small>Dates</small><strong>16 &amp; 17 Oct 2026</strong></div><div><small>Venue</small><strong>${e.v==='D-Block'?'D-Block, MGIT (room on the day)':e.v+', D-Block'}</strong></div>${e.tm?`<div><small>Time</small><strong>${e.tm}</strong></div>`:''}</div>
-</div><div class="two"><div class="box rv"><h3>Registration fee</h3>${e.f.map(f=>`<div class="row"><span>${f[0]}</span><b>₹${f[1]}</b></div>`).join('')}<button class="btn p" id="rg" style="margin-top:20px;width:100%;justify-content:center">Register for ${e.n}</button></div>
+</div><div class="two"><div class="box rv"><h3>Registration fee</h3>${e.f.map(f=>`<div class="row"><span>${f[0]}</span><b>₹${f[1]}</b></div>`).join('')}<a class="btn p" id="rg" href="${U[e.s]}" target="_blank" rel="noopener noreferrer" style="margin-top:20px;width:100%;justify-content:center">Register for ${e.n} ↗</a></div>
 <div class="box rv"><h3>Student coordinators</h3>${e.c.map(c=>`<div class="row"><span>${c[0]}</span><a href="tel:+91${c[1]}">${ph(c[1])}</a></div>`).join('')}</div></div>
 <div class="nx"><a href="#/event/${a.s}"><small>← Previous</small><strong>${a.n}</strong></a><a href="#/event/${b.s}" style="text-align:right"><small>Next →</small><strong>${b.n}</strong></a></div>
 </div></div>`;
-$('#rg').onclick=()=>toast('Scan the registration QR on the official '+e.n+' poster, or call a coordinator above.');}
+}
 function go(id){const el=document.getElementById(id);if(!el)return;const y=el.getBoundingClientRect().top+scrollY-($('nav').offsetHeight+4);window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}
 function setup(){
 const io=new IntersectionObserver(en=>en.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1});
